@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = '';
 
 // --- УМНЫЙ FETCH (С авто-обновлением токена) ---
 async function authFetch(url, options = {}) {
@@ -155,4 +155,5 @@ async function handleLogout() {
 window.onload = () => {
     const u = localStorage.getItem('username');
     if (u) openProfile(u);
+
 };
