@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 4: Refresh Token</title>
+    <style>
+        body {
+            margin: 0; font-family: sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            height: 100vh; display: flex; justify-content: center; align-items: center; color: white;
+        }
+        .glass-card {
+            background: rgba(255,255,255,0.1); border-radius: 20px;
+            padding: 40px; width: 350px; text-align: center;
+            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);
+        }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+        button { width: 100%; padding: 10px; margin-top: 10px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold;}
+        .btn-primary { background: #00d2ff; color: #333; }
+        .btn-check { background: #a8ff78; color: #333; }
+        .btn-logout { background: #ff6b6b; color: white; }
+        .hidden { display: none; }
+        .info-box { background: rgba(0,0,0,0.3); padding: 15px; margin: 15px 0; border-radius: 5px; text-align: left; font-family: monospace;}
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <div id="view-login">
+            <h2>Вхід</h2>
+            <input type="text" id="login-user" placeholder="Логін">
+            <input type="password" id="login-pass" placeholder="Пароль">
+            <button class="btn-primary" onclick="handleLogin()">Увійти</button>
+            <div style="margin-top:10px; color: #ffaaaa;" id="login-msg"></div>
+            <p onclick="switchView('view-register')" style="cursor:pointer; text-decoration:underline; font-size:14px;">Реєстрація</p>
+        </div>
+
+        <div id="view-register" class="hidden">
+            <h2>Реєстрація</h2>
+            <input type="text" id="reg-user" placeholder="Логін">
+            <input type="password" id="reg-pass" placeholder="Пароль">
+            <button class="btn-primary" onclick="handleRegister()">Створити</button>
+            <div style="margin-top:10px; color: #ffaaaa;" id="reg-msg"></div>
+            <p onclick="switchView('view-login')" style="cursor:pointer; text-decoration:underline; font-size:14px;">Назад</p>
+        </div>
+
+        <div id="view-profile" class="hidden">
+            <h2>Кабінет</h2>
+            <p>Привіт, <b id="display-username"></b>!</p>
+            <div class="info-box" id="secret-container">Завантаження...</div>
+            
+            <button class="btn-check" onclick="handleTokenCheck()">🛡 Перевірити Токен (Auth)</button>
+            <button class="btn-logout" onclick="handleLogout()">Вийти</button>
+            
+            <p style="font-size: 12px; opacity: 0.7; margin-top: 15px;">
+                ℹ️ Access токен живе 30 секунд.<br>
+                Почекай 30 сек<br>
+                через 30 сек рефреш токен сам оновить Access токен
+            </p>
+        </div>
+    </div>
+    <script src="client.js"></script>
+</body>
+</html>
